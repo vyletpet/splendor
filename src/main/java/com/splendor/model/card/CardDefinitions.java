@@ -23,14 +23,22 @@ public class CardDefinitions {
         Map<CardLevel, List<Card>> deckDefinitions = new HashMap<>();
         
         List<Card> nobles = new ArrayList<>(10);
-        nobles.add(new Card(2, defineCosts(0, 2, 3, 0, 1)));
-        nobles.add(new Card(2, defineCosts(0, 2, 3, 0, 1)));
-        nobles.add(new Card(2, defineCosts(0, 2, 3, 0, 1)));
+        nobles.add(new Card(3, defineCosts(3, 3, 3, 0, 0)));
+        nobles.add(new Card(3, defineCosts(3, 3, 0, 3, 0)));
+        nobles.add(new Card(3, defineCosts(0, 4, 0, 4, 0)));
+        nobles.add(new Card(3, defineCosts(0, 0, 3, 3, 3)));
+        nobles.add(new Card(3, defineCosts(0, 3, 0, 3, 3)));
+        nobles.add(new Card(3, defineCosts(3, 0, 3, 0, 3)));
+        nobles.add(new Card(3, defineCosts(4, 4, 0, 0, 0)));
+        nobles.add(new Card(3, defineCosts(0, 0, 0, 4, 4)));
+        nobles.add(new Card(3, defineCosts(4, 0, 4, 0, 0)));
+        nobles.add(new Card(3, defineCosts(0, 0, 4, 0, 4)));
         NOBLES_DECK = unmodifiableList(nobles);
 
         List<Card> firstLevelCards = new ArrayList<>(10);
         firstLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.DIAMOND));
         firstLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.EMERALD));
+        firstLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.ONYX));
         firstLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.ONYX));
         deckDefinitions.put(CardLevel.FIRST, unmodifiableList(firstLevelCards));
 
@@ -38,10 +46,12 @@ public class CardDefinitions {
         secondLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.DIAMOND));
         secondLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.EMERALD));
         secondLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.ONYX));
+        secondLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.ONYX));
         deckDefinitions.put(CardLevel.SECOND, unmodifiableList(secondLevelCards));
 
         List<Card> thirdLevelCards = new ArrayList<>(10);
         thirdLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.DIAMOND));
+        thirdLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.EMERALD));
         thirdLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.EMERALD));
         thirdLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.ONYX));
         deckDefinitions.put(CardLevel.THIRD, unmodifiableList(thirdLevelCards));

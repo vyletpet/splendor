@@ -18,8 +18,8 @@ public class Endpoint {
 
     @GET
     @Produces("application/json")
-    public Game message() {
-        return gameService.startNewGame();
+    public Game message() throws Exception {
+        return gameService.createNewGame();
     }
 
 }

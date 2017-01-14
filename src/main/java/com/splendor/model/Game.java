@@ -10,23 +10,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Collections.addAll;
-
 /**
  * Created by pvyletelek on 1/6/2017.
  */
 public class Game {
 
+    private Player onTurn;
+    private Player winner;
     private GameState gameState;
+    
     private GemCollection gemsOnBoard;
-    private List<Player> players = new ArrayList<>(4);
+    private List<Player> players = new ArrayList<>(GameRules.MAX_PLAYERS);
     private Map<CardLevel, CardDeck> decks = new HashMap<>();
-    private Map<CardLevel, List<Card>> availableCards = new HashMap<>();
-    private List<Card> availableNobles = new ArrayList<>(5);
+    private Map<CardLevel, Card[]> availableCards = new HashMap<>();
+    private List<Card> availableNobles = new ArrayList<>(GameRules.MAX_NOBLES_COUNT);
 
-    public Game(Player... players) {
-        addAll(this.players, players);
+    public Game() {
         gameState = GameState.NEW;
+        availableCards.put(CardLevel.FIRST, new Card[GameRules.AVAILABLE_CARDS_COUNT]);
+        availableCards.put(CardLevel.SECOND, new Card[GameRules.AVAILABLE_CARDS_COUNT]);
+        availableCards.put(CardLevel.THIRD, new Card[GameRules.AVAILABLE_CARDS_COUNT]);
     }
 
     public void setGameState(GameState gameState) {
@@ -43,6 +46,10 @@ public class Game {
         }
     }
     
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+    
     public GemCollection getGemsOnBoard() {
         return gemsOnBoard;
     }
@@ -54,8 +61,12 @@ public class Game {
     public Map<CardLevel, CardDeck> getDecks() {
         return decks;
     }
+    
+    public CardDeck getDeck(CardLevel cardLevel) {
+        return decks.get(cardLevel);
+    }
 
-    public Map<CardLevel, List<Card>> getAvailableCards() {
+    public Map<CardLevel, Card[]> getAvailableCards() {
         return availableCards;
     }
 
@@ -63,6 +74,10 @@ public class Game {
         return availableNobles;
     }
 
+    public void addAvailableNoble(Card availableNoble) {
+        availableNobles.add(availableNoble);
+    }
+    
     @Override
     public String toString() {
         String output = "";
@@ -72,5 +87,9 @@ public class Game {
             output += player + "\n";
         }
         return output;
+    }
+
+    public Card[] getAvailableCards(CardLevel cardLevel) {
+        return availableCards.get(cardLevel);
     }
 }

@@ -20,7 +20,7 @@ public class GameController {
     @GetMapping("/splendor")
     @ResponseBody
     public String playGame() {
-        String s = new Game(new Player("Petr"), new Player("John")).toString();
+        String s = new Game().toString();
         System.out.println(s);
         return format(s);
     }
