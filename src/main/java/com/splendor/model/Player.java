@@ -15,13 +15,13 @@ public class Player {
     private int prestigePoints = 0;
     private GemCollection ownedGems;
     private GemCollection generatedGems;
-    private List<Card> ownedCards = new ArrayList<>(20);
+    private List<Card> ownedCards = new ArrayList<>(40);
     private List<Card> reservedCards = new ArrayList<>(3);
 
     public Player(String name) {
         this.name = name;
-        generatedGems = new GemCollectionBuilder().setIncludeGold(false).createGemCollection();
-        ownedGems = new GemCollectionBuilder().createGemCollection();
+        generatedGems = new GemCollectionBuilder().setIncludeGold(false).create();
+        ownedGems = new GemCollectionBuilder().create();
     }
 
     public String getName() {

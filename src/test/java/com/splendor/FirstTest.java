@@ -54,12 +54,12 @@ public class FirstTest {
     }
 
     @Test
-    public void myTest() throws Exception {
+    public void newGameIsProperlyCreated() throws Exception {
         Game game = new GameService().createNewGame("Petr", "Jan", "Pavel");
 
-        assertAvailableCards(game, CardLevel.FIRST);
-        assertAvailableCards(game, CardLevel.SECOND);
-        assertAvailableCards(game, CardLevel.THIRD);
+        assertCardsOnBoard(game, CardLevel.FIRST);
+        assertCardsOnBoard(game, CardLevel.SECOND);
+        assertCardsOnBoard(game, CardLevel.THIRD);
         
         Assert.assertNotNull(game.getAvailableNobles());
         Assert.assertEquals(4, game.getAvailableNobles().size());
@@ -71,12 +71,12 @@ public class FirstTest {
         }
     }
 
-    private void assertAvailableCards(Game game, CardLevel cardLevel) throws Exception {
-        assertEquals(4, game.getAvailableCards().get(cardLevel).length);
+    private void assertCardsOnBoard(Game game, CardLevel cardLevel) throws Exception {
+        assertEquals(4, game.getCardsOnBoard().get(cardLevel).length);
         boolean availableCardsAreTheSame = true;
         while (availableCardsAreTheSame) {
             Game game2 = new GameService().createNewGame("Petr", "Jan", "Pavel");
-            availableCardsAreTheSame = cardsAreEqual(game.getAvailableCards(cardLevel), game2.getAvailableCards(cardLevel));
+            availableCardsAreTheSame = cardsAreEqual(game.getCardsOnBoard(cardLevel), game2.getCardsOnBoard(cardLevel));
         }
     }
 

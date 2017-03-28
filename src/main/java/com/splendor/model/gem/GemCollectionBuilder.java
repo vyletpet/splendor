@@ -15,7 +15,7 @@ public class GemCollectionBuilder {
         return this;
     }
 
-    public GemCollection createGemCollection() {
+    public GemCollection create() {
         return new GemCollection(initBoardCollection, includeGold);
     }
 }

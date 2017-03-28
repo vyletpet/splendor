@@ -7,21 +7,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
+import javax.ws.rs.ApplicationPath;
+
 /**
  * Created by pvyletelek on 1/7/2017.
  */
 @Configuration
+@ApplicationPath("/splendor")
 public class JerseyConfig extends ResourceConfig {
+    
     public JerseyConfig() {
-        register(Endpoint.class);
+        register(GameEndpoint.class);
     }
 
     @Bean
     public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        MappingJackson2HttpMessageConverter converter =
-                new MappingJackson2HttpMessageConverter(mapper);
-        return converter;
+        return new MappingJackson2HttpMessageConverter(mapper);
     }
 }

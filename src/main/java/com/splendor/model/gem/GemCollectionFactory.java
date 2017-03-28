@@ -15,7 +15,7 @@ public class GemCollectionFactory {
         GemCollection costs = new GemCollectionBuilder()
                 .setIncludeGold(false)
                 .setInitBoardCollection(false)
-                .createGemCollection();
+                .create();
         
         costs.setGemCount(Gem.EMERALD, emeraldsCount);
         costs.setGemCount(Gem.SAPPHIRE, sapphireCount);

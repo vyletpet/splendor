@@ -6,7 +6,7 @@ import com.splendor.model.card.CardLevel;
 import com.splendor.model.gem.GemCollection;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,18 +18,21 @@ public class Game {
     private Player onTurn;
     private Player winner;
     private GameState gameState;
+    private int round;
     
     private GemCollection gemsOnBoard;
     private List<Player> players = new ArrayList<>(GameRules.MAX_PLAYERS);
-    private Map<CardLevel, CardDeck> decks = new HashMap<>();
-    private Map<CardLevel, Card[]> availableCards = new HashMap<>();
+    private Map<CardLevel, CardDeck> decks = new EnumMap<>(CardLevel.class);
+    private Map<CardLevel, Card[]> cardsOnBoard = new EnumMap<>(CardLevel.class);
     private List<Card> availableNobles = new ArrayList<>(GameRules.MAX_NOBLES_COUNT);
 
     public Game() {
         gameState = GameState.NEW;
-        availableCards.put(CardLevel.FIRST, new Card[GameRules.AVAILABLE_CARDS_COUNT]);
-        availableCards.put(CardLevel.SECOND, new Card[GameRules.AVAILABLE_CARDS_COUNT]);
-        availableCards.put(CardLevel.THIRD, new Card[GameRules.AVAILABLE_CARDS_COUNT]);
+        
+        // Init arrays
+        cardsOnBoard.put(CardLevel.FIRST, new Card[GameRules.CARDS_ON_BOARD_COUNT]);
+        cardsOnBoard.put(CardLevel.SECOND, new Card[GameRules.CARDS_ON_BOARD_COUNT]);
+        cardsOnBoard.put(CardLevel.THIRD, new Card[GameRules.CARDS_ON_BOARD_COUNT]);
     }
 
     public void setGameState(GameState gameState) {
@@ -66,8 +69,8 @@ public class Game {
         return decks.get(cardLevel);
     }
 
-    public Map<CardLevel, Card[]> getAvailableCards() {
-        return availableCards;
+    public Map<CardLevel, Card[]> getCardsOnBoard() {
+        return cardsOnBoard;
     }
 
     public List<Card> getAvailableNobles() {
@@ -89,7 +92,7 @@ public class Game {
         return output;
     }
 
-    public Card[] getAvailableCards(CardLevel cardLevel) {
-        return availableCards.get(cardLevel);
+    public Card[] getCardsOnBoard(CardLevel cardLevel) {
+        return cardsOnBoard.get(cardLevel);
     }
 }

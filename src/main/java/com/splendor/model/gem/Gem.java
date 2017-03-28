@@ -12,8 +12,8 @@ public enum Gem {
     ONYX("Onyx", "black"),
     GOLD("Gold", "yellow", 5);
 
-
     private static final int DEFAULT_INITIAL_COUNT = 7;
+
     
     private String name;
     private String color;
