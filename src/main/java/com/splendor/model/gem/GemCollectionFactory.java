@@ -5,6 +5,10 @@ package com.splendor.model.gem;
  */
 public class GemCollectionFactory {
 
+    private GemCollectionFactory() {
+        throw new IllegalAccessError("Utility class");
+    }
+
     public static GemCollection defineCosts(
             int emeraldsCount, 
             int sapphireCount, 

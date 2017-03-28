@@ -1,6 +1,6 @@
 package com.splendor.model.gem;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 /**
@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class GemCollection {
 
-    private Map<Gem, Integer> gemCollection = new HashMap<>();
+    private Map<Gem, Integer> gemCounts = new EnumMap<>(Gem.class);
 
     public GemCollection(boolean initBoardCollection, boolean includeGold) {
         for (Gem gem : Gem.values()) {
@@ -16,9 +16,9 @@ public class GemCollection {
                 continue;
             }
             if (initBoardCollection) {
-                gemCollection.put(gem, gem.getInitialCount());
+                gemCounts.put(gem, gem.getInitialCount());
             } else {
-                gemCollection.put(gem, 0);
+                gemCounts.put(gem, 0);
             }
         }
     }
@@ -32,21 +32,21 @@ public class GemCollection {
     }
     
     public void addGem(Gem gem) {
-        gemCollection.computeIfPresent(gem, (gem1, count) -> count + 1);
+        gemCounts.computeIfPresent(gem, (gem1, count) -> count + 1);
     }
 
     public Map<Gem, Integer> getGemCollection() {
-        return gemCollection;
+        return gemCounts;
     }
 
     public void setGemCount(Gem gem, int count) {
-        gemCollection.put(gem, count);
+        gemCounts.put(gem, count);
     }
     
     @Override
     public String toString() {
         String output = "";
-        for (Map.Entry<Gem, Integer> entry : gemCollection.entrySet()) {
+        for (Map.Entry<Gem, Integer> entry : gemCounts.entrySet()) {
             output += entry.getKey() + ": " + entry.getValue() + "\n";
         }
         return output;

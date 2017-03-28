@@ -3,7 +3,7 @@ package com.splendor.model.card;
 import com.splendor.model.gem.Gem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +15,13 @@ import static java.util.Collections.unmodifiableMap;
  * Created by pvyletelek on 1/7/2017.
  */
 public class CardDefinitions {
-    
+
     public static final Map<CardLevel, List<Card>> REGULAR_DECKS;
     public static final List<Card> NOBLES_DECK;
 
     static {
-        Map<CardLevel, List<Card>> deckDefinitions = new HashMap<>();
-        
+        Map<CardLevel, List<Card>> deckDefinitions = new EnumMap<>(CardLevel.class);
+
         List<Card> nobles = new ArrayList<>(10);
         nobles.add(new Card(3, defineCosts(3, 3, 3, 0, 0)));
         nobles.add(new Card(3, defineCosts(3, 3, 0, 3, 0)));
@@ -55,8 +55,11 @@ public class CardDefinitions {
         thirdLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.EMERALD));
         thirdLevelCards.add(new Card(2, defineCosts(0, 2, 3, 0, 1), Gem.ONYX));
         deckDefinitions.put(CardLevel.THIRD, unmodifiableList(thirdLevelCards));
-        
+
         REGULAR_DECKS = unmodifiableMap(deckDefinitions);
     }
 
+    private CardDefinitions() {
+        throw new IllegalAccessError("Utility class");
+    }
 }
